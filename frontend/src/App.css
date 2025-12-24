@@ -86,6 +86,65 @@ button:hover {
   background-color: #004182;
 }
 
+/* Unsubscribe Section */
+.unsubscribe-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.unsubscribe-section p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.unsubscribe-btn {
+  background-color: #f3f2ef;
+  color: #d11124;
+  border: 1px solid #d11124;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.unsubscribe-btn:hover {
+  background-color: #ffe8ea;
+  color: #a00a1a;
+}
+
+/* Unsubscribe Modal */
+.unsubscribe-modal h2 {
+  color: #d11124;
+}
+
+.unsubscribe-modal form {
+  margin: 20px 0;
+}
+
+.unsubscribe-modal input {
+  margin-bottom: 15px;
+}
+
+.unsubscribe-modal button[type="submit"] {
+  background-color: #d11124;
+  margin-bottom: 10px;
+}
+
+.unsubscribe-modal button[type="submit"]:hover {
+  background-color: #a00a1a;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+  margin-top: 10px;
+}
+
+.cancel-btn:hover {
+  background-color: #d0d0d0;
+}
+
 /* Success State */
 .success {
   border-top: 6px solid #057642;

@@ -3,6 +3,7 @@ const mailService = require("./mail.service");
 const schedulerService = require("./scheduler.service");
 const scraperService = require("./scraper.service");
 const User = require("../models/user.model"); // MongoDB model
+const Activity = require("../models/activity.model");
 
 const registerUser = async ({
   username,
@@ -42,6 +43,41 @@ const registerUser = async ({
   return user;
 };
 
+const unsubscribeUser = async (email) => {
+  // Find user by LinkedIn email or notification email
+  const user = await User.findOne({
+    $or: [
+      { linkedinEmail: email },
+      { notificationEmail: email }
+    ]
+  });
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  // Store user details before deletion for confirmation email
+  const userDetails = {
+    notificationEmail: user.notificationEmail,
+    username: user.username
+  };
+
+  // Delete all activity records associated with this user
+  await Activity.deleteMany({ userId: user._id });
+
+  // Delete user record from database
+  await User.findByIdAndDelete(user._id);
+
+  // Send unsubscribe confirmation email
+  await mailService.sendUnsubscribeConfirmationEmail({
+    to: userDetails.notificationEmail,
+    username: userDetails.username
+  });
+
+  return userDetails;
+};
+
 module.exports = {
-  registerUser
+  registerUser,
+  unsubscribeUser
 };

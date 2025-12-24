@@ -64,7 +64,7 @@ const sendNotificationEmail = async ({
       table: {
         data: tableData
       },
-      outro: "You will continue to receive updates every 3 hours."
+      outro: "You will continue to receive updates every 3 hours. You can stop notifications at any time."
     }
   };
 
@@ -82,6 +82,38 @@ const sendNotificationEmail = async ({
   await transporter.sendMail(message);
 };
 
+/**
+ * Send unsubscribe confirmation email
+ */
+const sendUnsubscribeConfirmationEmail = async ({
+  to,
+  username
+}) => {
+  const transporter = createTransporter();
+  const mailGenerator = createMailGenerator();
+
+  const emailBody = {
+    body: {
+      name: username,
+      intro: "We have successfully unsubscribed you from LinkedIn notifications.",
+      outro: "You will no longer receive any emails from our service. If you change your mind and want to resubscribe, feel free to sign up again anytime.",
+      signature: "Best regards"
+    }
+  };
+
+  const emailHtml = mailGenerator.generate(emailBody);
+
+  const message = {
+    from: EMAIL,
+    to,
+    subject: "LinkedIn Notifications – Unsubscribed",
+    html: emailHtml
+  };
+
+  await transporter.sendMail(message);
+};
+
 module.exports = {
-  sendNotificationEmail
+  sendNotificationEmail,
+  sendUnsubscribeConfirmationEmail
 };

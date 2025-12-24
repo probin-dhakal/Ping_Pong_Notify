@@ -40,6 +40,38 @@ const register = async (req, res) => {
   }
 };
 
+const unsubscribe = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Basic validation
+    if (!email) {
+      return res.status(400).json({
+        message: "Email is required"
+      });
+    }
+
+    await notificationService.unsubscribeUser(email);
+
+    return res.status(200).json({
+      message: "You have been successfully unsubscribed. A confirmation email has been sent."
+    });
+  } catch (error) {
+    console.error("Unsubscribe Controller Error:", error);
+    
+    if (error.message === "User not found") {
+      return res.status(404).json({
+        message: "Email not found. Please check and try again."
+      });
+    }
+
+    return res.status(500).json({
+      message: "Unsubscribe failed. Please try again later."
+    });
+  }
+};
+
 module.exports = {
-  register
+  register,
+  unsubscribe
 };

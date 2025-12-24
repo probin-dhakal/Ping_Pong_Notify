@@ -13,6 +13,12 @@ const run = async (userId) => {
     throw new Error("User not found");
   }
 
+  // Check if user is subscribed
+  if (!user.isSubscribed) {
+    console.log(`User ${userId} is unsubscribed. Skipping scheduled job.`);
+    return;
+  }
+
   // 2. Fetch latest LinkedIn stats
   const currentStats = await scraperService.fetchStats({
     linkedinEmail: user.linkedinEmail,

@@ -5,7 +5,11 @@ const userSchema = new mongoose.Schema(
     username: String,
     linkedinEmail: String,
     encryptedPassword: String,
-    notificationEmail: String
+    notificationEmail: String,
+    isSubscribed: {
+      type: Boolean,
+      default: true
+    }
   },
   { timestamps: true }
 );
