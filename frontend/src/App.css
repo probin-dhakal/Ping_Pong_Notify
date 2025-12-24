@@ -4,198 +4,517 @@
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  /* Soft professional gradient */
-  background: linear-gradient(135deg, #f3f2ef 0%, #cbd5e0 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Container Styles */
 .container {
-  max-width: 450px;
+  max-width: 480px;
   width: 90%;
   padding: 40px;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.6s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Section */
+.header-section {
+  margin-bottom: 30px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  animation: float 3s ease-in-out infinite;
 }
 
 /* Typography */
 h1 {
-  font-size: 24px;
-  color: #000000;
-  margin-bottom: 8px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0;
+  line-height: 1.2;
 }
 
 h2 {
-  font-size: 22px;
-  color: #1d1d1d;
-  margin-top: 0;
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 20px 0 10px;
+  font-weight: 600;
 }
 
 .subtitle {
   font-size: 15px;
   color: #666;
-  line-height: 1.5;
-  margin-bottom: 30px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
 }
 
-/* Form Elements */
-form {
+/* Form Styles */
+.main-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
-input {
+.input-group {
+  position: relative;
   width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #8e8e8e;
-  font-size: 15px;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-input:focus {
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  border: 2px solid #e1e8ed;
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background: #f8fafc;
+  /* TEXT VISIBILITY FIX */
+  color: #1a1a1a !important; /* Force dark text */
+}
+
+/* Placeholder color */
+.input-group input::placeholder {
+  color: #888;
+  opacity: 0.8;
+}
+
+/* Text color for typed content */
+.input-group input:not(:placeholder-shown) {
+  color: #1a1a1a !important;
+}
+
+.input-group input:focus {
   outline: none;
   border-color: #0a66c2;
-  box-shadow: 0 0 0 2px rgba(10, 102, 194, 0.2);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(10, 102, 194, 0.1);
+  color: #1a1a1a !important; /* Ensure text is visible on focus */
 }
 
-button {
-  width: 100%;
-  padding: 14px;
-  background-color: #0a66c2;
+.input-group input:focus + .input-icon {
+  color: #0a66c2;
+  opacity: 1;
+}
+
+/* Password Toggle */
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  width: auto;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.password-toggle:hover {
+  opacity: 1;
+  background: none;
+}
+
+/* Button Styles */
+.primary-btn {
+  background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
   color: white;
   border: none;
-  border-radius: 25px; /* Rounded pill shape */
-  cursor: pointer;
+  border-radius: 12px;
+  padding: 16px 24px;
   font-size: 16px;
   font-weight: 600;
-  transition: background-color 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-top: 10px;
 }
 
-button:hover {
-  background-color: #004182;
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(10, 102, 194, 0.3);
+}
+
+.submit-btn {
+  margin-top: 10px;
+}
+
+.secondary-btn {
+  background: #f8fafc;
+  color: #0a66c2;
+  border: 2px solid #0a66c2;
+  border-radius: 12px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background: #e8f0fe;
+  transform: translateY(-2px);
 }
 
 /* Unsubscribe Section */
 .unsubscribe-section {
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #e1e8ed;
+  animation: slideUp 0.5s ease-out 0.2s both;
 }
 
-.unsubscribe-section p {
+.unsubscribe-text {
   color: #666;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .unsubscribe-btn {
-  background-color: #f3f2ef;
+  background: transparent;
   color: #d11124;
-  border: 1px solid #d11124;
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
+  border: 2px solid #ffcdd2;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .unsubscribe-btn:hover {
-  background-color: #ffe8ea;
-  color: #a00a1a;
+  background: #ffebee;
+  border-color: #d11124;
+  transform: translateY(-2px);
 }
 
-/* Unsubscribe Modal */
-.unsubscribe-modal h2 {
-  color: #d11124;
+/* Icon Wrappers */
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: scaleIn 0.6s ease-out;
 }
 
-.unsubscribe-modal form {
-  margin: 20px 0;
+.success-icon {
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
 }
 
+.error-icon {
+  background: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
+}
+
+.warning-icon {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+}
+
+/* Checkmark Animation */
+.checkmark {
+  width: 40px;
+  height: 20px;
+  border-left: 4px solid white;
+  border-bottom: 4px solid white;
+  transform: rotate(-45deg);
+  animation: drawCheck 0.5s ease-out;
+}
+
+/* X Mark Animation */
+.x-mark {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.x-mark:before, .x-mark:after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: white;
+  top: 0;
+  left: 50%;
+}
+
+.x-mark:before {
+  transform: translateX(-50%) rotate(45deg);
+  animation: drawX1 0.4s ease-out;
+}
+
+.x-mark:after {
+  transform: translateX(-50%) rotate(-45deg);
+  animation: drawX2 0.4s ease-out 0.2s;
+}
+
+/* Exclamation Mark */
+.exclamation-mark {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #e1e8ed;
+  border-top: 4px solid #0a66c2;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+/* Safe Note */
+.safe-note {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0369a1;
+  font-size: 14px;
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1;
+  margin: 0;
+}
+
+/* Unsubscribe Modal Specific */
+.unsubscribe-modal .input-group {
+  margin: 25px 0;
+}
+
+/* FIX FOR UNSUBSCRIBE INPUT TEXT COLOR */
 .unsubscribe-modal input {
-  margin-bottom: 15px;
+  color: #1a1a1a !important;
 }
 
-.unsubscribe-modal button[type="submit"] {
-  background-color: #d11124;
-  margin-bottom: 10px;
+.unsubscribe-modal input::placeholder {
+  color: #888;
 }
 
-.unsubscribe-modal button[type="submit"]:hover {
-  background-color: #a00a1a;
+.unsubscribe-submit-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+}
+
+.unsubscribe-submit-btn:hover {
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
 }
 
 .cancel-btn {
-  background-color: #e0e0e0;
-  color: #333;
+  background: #f8fafc;
+  color: #666;
+  border: 2px solid #e1e8ed;
   margin-top: 10px;
 }
 
 .cancel-btn:hover {
-  background-color: #d0d0d0;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
-/* Success State */
-.success {
-  border-top: 6px solid #057642;
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.success h2 {
-  color: #057642;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.success p {
-  color: #474747;
-  line-height: 1.6;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.safe {
-  background-color: #edfcf5;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #245d3e;
-  margin-top: 20px;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* Error State */
-.error {
-  border-top: 6px solid #d11124;
+@keyframes drawCheck {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 40px;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 40px;
+    height: 20px;
+    opacity: 1;
+  }
 }
 
-.error h2 {
-  color: #d11124;
+@keyframes drawX1 {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
 }
 
-.error button {
-  background-color: #f3f2ef;
-  color: #666;
-  border: 1px solid #666;
-  margin-top: 20px;
+@keyframes drawX2 {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
 }
 
-.error button:hover {
-  background-color: #ebebeb;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
-/* Loading Animation Placeholder */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 1; }
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
+    width: 95%;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  h2 {
+    font-size: 22px;
+  }
+  
+  .logo {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .primary-btn, .secondary-btn, .unsubscribe-btn {
+    padding: 14px 20px;
+  }
 }
 
-.container h2 span {
-  display: inline-block;
-  animation: pulse 1.5s infinite ease-in-out;
+/* State-specific container variations */
+.success-state, .error-state, .loading-state {
+  animation: slideUp 0.6s ease-out;
+}
+
+.success-state {
+  border-top: 4px solid #34d399;
+}
+
+.error-state {
+  border-top: 4px solid #dc2626;
+}
+
+.loading-state {
+  border-top: 4px solid #0a66c2;
+}
+
+/* Ensure all text is visible in unsubscribe modal */
+.unsubscribe-modal .input-group input {
+  color: #1a1a1a !important;
 }
