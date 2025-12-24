@@ -1,0 +1,1 @@
+worker: python linkedin_scraper.py
