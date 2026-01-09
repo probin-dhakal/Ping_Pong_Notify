@@ -210,21 +210,7 @@ This application is deployment-ready for production!
 - **Frontend:** Vercel (free)
 - **Backend:** GCP Compute Engine e2-micro (free tier)
 - **Database:** MongoDB Atlas (free tier)
-
-### 📚 Deployment Guides:
-
-1. **[DEPLOYMENT.md](DEPLOYMENT.md)** - Complete step-by-step deployment guide
-2. **[QUICK_DEPLOY.md](QUICK_DEPLOY.md)** - Quick reference and checklist
-3. **[URL_CONFIG_GUIDE.md](URL_CONFIG_GUIDE.md)** - Where to configure URLs
-
-### Setup Environment:
-```bash
-# Generate environment variable templates
-./setup-env.sh
-```
-
 ---
-
 ## ⚠️ Limitations & Notes
 
 - CAPTCHA / OTP handling is **out of scope**
