@@ -11,14 +11,14 @@ def fetch_linkedin_stats(email, password):
     driver = get_driver()
 
     driver.get("https://www.linkedin.com/login")
-    time.sleep(2)
+    time.sleep(5)
 
     # Login
     driver.find_element(By.ID, "username").send_keys(email)
     driver.find_element(By.ID, "password").send_keys(password)
     driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
-    time.sleep(6)  # wait for home page
+    time.sleep(10)  # wait for home page
 
     messages = 0
     notifications = 0
