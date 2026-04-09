@@ -75,7 +75,7 @@ This project solves that problem by:
     ↓
     MongoDB (Encrypted Credentials & Activity Logs)
     ↓
-    Python Automation (Playwright)
+    Python Automation (Selenium)
     ↓
     Email Service (Nodemailer + Mailgen)
     ↓
