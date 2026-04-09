@@ -6,7 +6,7 @@ const notificationJob = require("./scheduledJob.service");
  * Runs every 3 hours
  */
 const scheduleUserJob = (userId) => {
-  cron.schedule("*/2 * * * *", async () => {
+  cron.schedule("* */3 * * *", async () => {
     try {
       console.log(`Running scheduled job for user: ${userId}`);
       await notificationJob.run(userId);
