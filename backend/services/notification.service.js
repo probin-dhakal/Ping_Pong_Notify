@@ -62,6 +62,9 @@ const unsubscribeUser = async (email) => {
     username: user.username
   };
 
+  // Stop the recurring cron job before deleting the user record
+  schedulerService.cancelUserJob(user._id);
+
   // Delete all activity records associated with this user
   await Activity.deleteMany({ userId: user._id });
 

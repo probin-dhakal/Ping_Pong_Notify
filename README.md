@@ -51,8 +51,7 @@ This project solves that problem by:
 - User data is stored in MongoDB
 - Python automation is triggered immediately
 
-### 3️⃣ Automation & Data Retrieval
-- Python (Playwright) logs into LinkedIn
+- Python (Selenium) logs into LinkedIn
 - Fetches unread messages & notifications
 - Returns structured JSON data to Node.js
 
@@ -159,13 +158,12 @@ These logs enable **change comparison** between scheduled runs.
 
 ---
 
-## 🐍 Automation Layer (Python + Playwright)
+## 🐍 Automation Layer (Python + Selenium)
 
-### Why Playwright?
-- Works reliably in cloud environments (GitHub Codespaces)
-- Ships with its own Chromium binary
-- No dependency on system-installed browsers
-- Ideal for headless automation
+### Why Selenium?
+- Uses a standard browser automation API
+- Works with Chrome/Chromium in headless or visible mode
+- Keeps the scraper implementation simple and explicit
 
 ### Responsibilities
 - Automated LinkedIn login
